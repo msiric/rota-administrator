@@ -10,5 +10,14 @@ new Vue({
   router,
   store,
   vuetify,
+  watch: {
+    $route: function() {
+      if (this.$route.path === "/about") {
+        store.commit("hideControls");
+      } else {
+        store.commit("showControls");
+      }
+    },
+  },
   render: (h) => h(App),
 }).$mount("#app");

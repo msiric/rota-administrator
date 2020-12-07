@@ -1,5 +1,5 @@
 <template>
-  <p class="text-subtitle-1 ml-4">{{ date }}</p>
+  <p class="text-subtitle-1 mb-0">{{ date }}</p>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
   }),
   methods: {
     getDate() {
-      this.date = format(new Date(), "MMMM d, H:mm:ss");
+      this.date = format(new Date(), "PPP, H:mm:ss");
       setTimeout(this.getDate, 1000);
     },
   },

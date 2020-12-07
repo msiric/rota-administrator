@@ -1,11 +1,13 @@
 <template>
-  <div class="about pa-6">
-    <h1>About {{ $store.state.appTitle }}</h1>
+  <div class="pa-6 pt-3">
+    <h1 class="text-decoration-underline mb-4">How was it made</h1>
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque voluptatum
-      architecto fugiat, impedit doloribus iure laboriosam debitis. Recusandae
-      ex odit dolorem, eaque sapiente cupiditate doloremque? Minus illum
-      doloremque aut harum!
+      Rota Administrator was created as a demo project for Lineten. Technologies
+      used to created this application: Vue.js, Vuex, Vue Router and Vuetify.
     </p>
+    <p>
+      Unit tests are included and can be run with: npm test or yarn test.
+    </p>
+    <p>Check out README for more info.</p>
   </div>
 </template>

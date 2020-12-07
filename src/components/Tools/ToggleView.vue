@@ -1,16 +1,21 @@
 <template>
   <v-switch
     color="primary"
+    class="mr-4"
     v-model="$store.state.toggle"
-    :label="`${$store.state.toggle ? 'Calendar' : 'Accordion'}`"
     light
-  ></v-switch>
+    inset
+    hide-details
+    ><template v-slot:label>
+      <span class="switch-label">{{
+        `${$store.state.toggle ? "Calendar" : "Accordion"}`
+      }}</span>
+    </template></v-switch
+  >
 </template>
 
-<script>
-export default {
-  data: () => ({}),
-};
-</script>
-
-<style lang="scss"></style>
+<style lang="scss">
+.switch-label {
+  color: white;
+}
+</style>

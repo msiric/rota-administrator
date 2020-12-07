@@ -1,29 +1,71 @@
 <template>
   <v-expansion-panel>
-    <v-expansion-panel-header>
-      Item
+    <v-expansion-panel-header
+      class="font-weight-bold"
+      :class="{
+        'primary--text': rota.type === 'morning',
+        'indigo--text': rota.type === 'afternoon',
+      }"
+    >
+      {{ rota.date | formattedDate }} - {{ user.name }} ({{ rota.type }})
     </v-expansion-panel-header>
     <v-expansion-panel-content>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.
+      <v-list>
+        <v-list-item v-for="item in items" :key="item.label">
+          <v-icon class="mr-4">{{ item.icon }}</v-icon>
+          <v-list-item-content>
+            <v-list-item-title>{{ item.label }}</v-list-item-title>
+          </v-list-item-content>
+          <v-list-item-action class="text-capitalize">
+            <v-list-item-title>{{ item.content }}</v-list-item-title>
+          </v-list-item-action>
+        </v-list-item>
+      </v-list>
     </v-expansion-panel-content>
   </v-expansion-panel>
 </template>
 
 <script>
-import { format } from "date-fns";
+import "../../helpers/filters";
 
 export default {
-  props: ["rota"],
-  data: () => ({}),
-  filters: {
-    formattedDate(value) {
-      return format(new Date(value), "MMM d");
+  props: ["rota", "rotaId"],
+  computed: {
+    user: {
+      get() {
+        return this.$store.getters.foundUser(this.rota.userId);
+      },
     },
+  },
+  data: () => ({
+    items: [],
+  }),
+  created() {
+    this.items = [
+      {
+        label: "User ID",
+        icon: "mdi-account-key",
+        content: this.user.id,
+      },
+      {
+        label: "Employee",
+        icon: "mdi-account-circle",
+        content: this.user.name,
+      },
+      {
+        label: "Date",
+        icon: "mdi-calendar",
+        content: this.rota.date,
+      },
+      { label: "Daytime", icon: "mdi-clock-outline", content: this.rota.type },
+      { label: "Rota ID", icon: "mdi-table-key", content: this.rotaId },
+    ];
   },
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.v-expansion-panel-content__wrap {
+  padding: 0 8px 16px !important;
+}
+</style>
