@@ -3,9 +3,10 @@
     <v-list-item @click="toggleUserSelection(user.id)">
       <v-checkbox
         class="user-checkbox mr-2"
-        :input-value="$store.state.selection[user.id]"
+        :input-value="appSelection[user.id]"
         dense
         hide-details
+        :data-testid="`userCheckbox-${user.id}`"
       ></v-checkbox>
       <v-list-item-content>
         <v-list-item-title class="text-subtitle-1">{{
@@ -20,6 +21,13 @@
 <script>
 export default {
   props: ["user"],
+  computed: {
+    appSelection: {
+      get() {
+        return this.$store.getters.appSelection;
+      },
+    },
+  },
   methods: {
     toggleUserSelection(id) {
       this.$store.commit("toggleUserSelection", id);

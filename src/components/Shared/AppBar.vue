@@ -29,7 +29,7 @@
       <div class="d-flex justify-space-between align-center flex-grow-1">
         <div class="d-flex flex-column justify-end align-start">
           <v-toolbar-title class="app-title text-h4">{{
-            $store.state.appTitle
+            appTitle
           }}</v-toolbar-title>
           <live-date-time></live-date-time>
         </div>
@@ -38,12 +38,13 @@
             @click="toggleDialog()"
             :class="{
               control: true,
-              'control-hidden': !$store.state.controls,
+              'control-hidden': !appControls,
             }"
             fab
             dark
             small
             color="primary"
+            data-testid="generateRota"
           >
             <v-icon dark>
               mdi-plus
@@ -58,6 +59,18 @@
 
 <script>
 export default {
+  computed: {
+    appTitle: {
+      get() {
+        return this.$store.getters.appTitle;
+      },
+    },
+    appControls: {
+      get() {
+        return this.$store.getters.appControls;
+      },
+    },
+  },
   components: {
     "toggle-view": require("@/components/Tools/ToggleView.vue").default,
     "live-date-time": require("@/components/Tools/LiveDateTime.vue").default,
@@ -82,9 +95,9 @@ export default {
 .v-sheet.v-app-bar.v-toolbar:not(.v-sheet--outlined).app-bar-container {
   box-shadow: none;
 }
-.header-container {
+.header-container.container {
   height: 100%;
-  max-width: none !important;
+  max-width: none;
 }
 .v-toolbar__title.app-title {
   white-space: pre-line;

@@ -16,24 +16,18 @@
           ><img src="../../../public/Avatar.png"
         /></v-avatar>
         <div class="white--text text-h5 font-weight-bold">
-          {{ `${$store.state.controls ? "Users" : "About"}` }}
+          {{ `${appControls ? "Users" : "About"}` }}
         </div>
         <div class="white--text text-subtitle-2">
-          {{
-            `${
-              $store.state.controls
-                ? "Manage users"
-                : "About Rota Administrator"
-            }`
-          }}
+          {{ `${appControls ? "Manage users" : "About Rota Administrator"}` }}
         </div>
       </div>
     </v-img>
 
     <div class="users-container">
       <div class="flex-grow-1">
-        <div v-if="$store.state.controls">
-          <user-list :users="$store.state.users" v-if="!$store.state.loading" />
+        <div class="full-height flex-grow-1" v-if="appControls">
+          <user-list :users="appUsers" v-if="!appLoading" />
           <loading-indicator v-else />
         </div>
         <div class="about pa-4" v-else>
@@ -64,6 +58,23 @@ export default {
       { title: "About", icon: "mdi-help-box", to: "/about" },
     ],
   }),
+  computed: {
+    appControls: {
+      get() {
+        return this.$store.getters.appControls;
+      },
+    },
+    appUsers: {
+      get() {
+        return this.$store.getters.appUsers;
+      },
+    },
+    appLoading: {
+      get() {
+        return this.$store.getters.appLoading;
+      },
+    },
+  },
   components: {
     "toggle-view": require("@/components/Tools/ToggleView.vue").default,
     "live-date-time": require("@/components/Tools/LiveDateTime.vue").default,
@@ -83,5 +94,8 @@ export default {
   display: flex;
   flex-direction: column;
   height: calc(100% - 170px);
+}
+.full-height {
+  height: 100%;
 }
 </style>

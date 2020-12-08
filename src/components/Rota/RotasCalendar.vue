@@ -55,7 +55,7 @@ export default {
       return event.color;
     },
     showRota(event) {
-      console.log(event);
+      console.log("show event information", event);
     },
   },
   mounted() {

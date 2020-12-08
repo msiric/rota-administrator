@@ -1,31 +1,51 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import { getData, generateRota } from "../services/rotas";
-
-Vue.use(Vuex);
+const getData = {
+  request: () => null,
+  success: { message: "Rotas successfully fetched", variant: "success" },
+  error: { message: "Failed to fetch rotas", variant: "error" },
+};
+const generateRota = {
+  request: () => null,
+  success: { message: "Rota successfully generated", variant: "success" },
+  error: { message: "Failed to generate rota", variant: "error" },
+};
 
 const TOGGLE_OPTIONS = {
   ACCORDION: false,
   CALENDAR: true,
 };
 
-export default new Vuex.Store({
+export const mockStore = {
   state: {
-    appTitle: process.env.VUE_APP_TITLE,
-    rotas: [],
-    users: {},
-    selection: {},
+    appTitle: "Rota Administrator",
+    rotas: [
+      {
+        period: { endDate: "2020-11-10", startDate: "2020-11-01" },
+        rota: [{ date: "2020-11-01", type: "morning", userId: 1 }],
+        rotaID: 11,
+      },
+      {
+        period: { endDate: "2020-11-20", startDate: "2020-11-11" },
+        rota: [{ date: "2020-11-11", type: "morning", userId: 10 }],
+        rotaID: 12,
+      },
+    ],
+    users: {
+      1: { name: "John Smith", id: 1 },
+      10: { name: "Beef Patty", id: 10 },
+    },
+    selection: { 1: true, 10: true },
     snackbar: {
       show: false,
       text: "",
       variant: "",
     },
-    loading: true,
+    loading: false,
     error: null,
     dialog: null,
     controls: true,
-    drawer: null,
+    drawer: true,
     toggle: TOGGLE_OPTIONS.ACCORDION,
+    dialog: null,
   },
   mutations: {
     setDataSuccess(state, data) {
@@ -176,4 +196,4 @@ export default new Vuex.Store({
       }));
     },
   },
-});
+};

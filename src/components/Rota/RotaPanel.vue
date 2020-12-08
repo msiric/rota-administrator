@@ -9,7 +9,7 @@
     >
       {{ rota.date | formattedDate }} - {{ user.name }} ({{ rota.type }})
     </v-expansion-panel-header>
-    <v-expansion-panel-content>
+    <v-expansion-panel-content class="accordion-content">
       <v-list>
         <v-list-item v-for="item in items" :key="item.label">
           <v-icon class="mr-4">{{ item.icon }}</v-icon>
@@ -33,7 +33,7 @@ export default {
   computed: {
     user: {
       get() {
-        return this.$store.getters.foundUser(this.rota.userId);
+        return this.$store.getters.appUser(this.rota.userId);
       },
     },
   },
@@ -65,7 +65,9 @@ export default {
 </script>
 
 <style lang="scss">
-.v-expansion-panel-content__wrap {
-  padding: 0 8px 16px !important;
+.accordion-content {
+  .v-expansion-panel-content__wrap {
+    padding: 0 8px 16px;
+  }
 }
 </style>

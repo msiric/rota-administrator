@@ -8,6 +8,7 @@
     <p>
       Unit tests are included and can be run with: npm test or yarn test.
     </p>
+    <p>Use Node version 10.15.3</p>
     <p>Check out README for more info.</p>
   </div>
 </template>

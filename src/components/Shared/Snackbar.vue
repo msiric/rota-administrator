@@ -1,11 +1,8 @@
 <template>
-  <v-snackbar
-    :color="$store.state.snackbar.variant"
-    v-model="$store.state.snackbar.show"
-  >
-    {{ $store.state.snackbar.text }}
+  <v-snackbar :color="appSnackbar.variant" v-model="appSnackbar.show">
+    {{ appSnackbar.text }}
     <template v-slot:action="{ attrs }">
-      <v-btn text v-bind="attrs" @click="$store.commit('hideSnackbar')">
+      <v-btn text v-bind="attrs" @click="hideSnackbar()">
         Close
       </v-btn>
     </template>
@@ -13,7 +10,20 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    appSnackbar: {
+      get() {
+        return this.$store.getters.appSnackbar;
+      },
+    },
+  },
+  methods: {
+    hideSnackbar() {
+      this.$store.commit("hideSnackbar");
+    },
+  },
+};
 </script>
 
 <style lang="scss">

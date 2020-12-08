@@ -1,5 +1,9 @@
 > Rota Administrator was created as a demo project for Lineten
 
+## Prerequisites
+
+use Node version 10.15.3
+
 ## Install
 
 ```sh

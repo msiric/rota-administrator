@@ -1,5 +1,5 @@
 <template>
-  <v-list dense class="pa-0">
+  <v-list dense class="pa-0" data-testid="userList">
     <user-item v-for="user in users" :key="user.id" :user="user" />
   </v-list>
 </template>

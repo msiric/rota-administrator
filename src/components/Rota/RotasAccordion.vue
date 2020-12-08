@@ -1,6 +1,6 @@
 <template>
   <div class="px-4 pb-4">
-    <div v-for="item in $store.state.rotas" :key="item.rotaID">
+    <div v-for="item in appRotas" :key="item.rotaID">
       <v-toolbar-title
         class="accordion-heading text-center my-3 text-decoration-underline"
       >
@@ -31,6 +31,11 @@ import "../../helpers/filters";
 
 export default {
   computed: {
+    appRotas: {
+      get() {
+        return this.$store.getters.appRotas;
+      },
+    },
     accordionRotas: {
       get() {
         return this.$store.getters.filteredAccordionRotas;
