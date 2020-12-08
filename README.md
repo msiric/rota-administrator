@@ -1,8 +1,12 @@
-> Rota Administrator was created as a demo project for Lineten
+# Rota Administrator was created as a demo project for Lineten
 
 ## Prerequisites
 
 Use Node version 10.15.3
+
+## Demo
+
+https://rota-administrator.netlify.app/#/
 
 ## Install
 
