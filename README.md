@@ -1,4 +1,6 @@
-# Rota Administrator was created as a demo project for Lineten
+# Rota Administrator
+
+Rota administrator application created using React/TypeScript, Express/TypeScript and PostgreSQL/TypeORM.
 
 ## Prerequisites
 
