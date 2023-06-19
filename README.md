@@ -27,8 +27,3 @@ yarn serve
 ```sh
 yarn test
 ```
-
-## Author
-
-👤 **Mario Širić**
-Github: [@msiric](https://github.com/msiric)
